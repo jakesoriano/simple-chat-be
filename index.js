@@ -13,10 +13,8 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-
-  socket.on('message',(msg)=>{
-    console.log('message : ' + msg);
-    io.emit('message', msg);
+  socket.on('message', (msg)=>{
+    io.emit('message', {id: socket.id, msg: msg});
   })
 
   socket.on('disconnect', () => {
